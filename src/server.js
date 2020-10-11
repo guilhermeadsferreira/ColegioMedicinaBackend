@@ -19,20 +19,6 @@ mongoose.connect(
 
 app.use(bodyParser.json());
 
-app.use((req, res, next) => {
-  const authHeader = req.headers.authorization;
-
-  if (!authHeader) {
-    return res.status(401).json({ error: "Token não fornecido." });
-  }
-
-  if (authHeader.split(" ")[1] !== MOCK_TOKEN) {
-    return res.status(401).json({ error: "Token inválido." });
-  }
-
-  return next();
-});
-
 app.use(routes);
 
 const server = app.listen(process.env.PORT || 3333, () => {

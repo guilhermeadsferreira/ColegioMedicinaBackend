@@ -19,20 +19,6 @@ _mongoose2.default.connect(
 
 app.use(_bodyparser2.default.json());
 
-app.use((req, res, next) => {
-  const authHeader = req.headers.authorization;
-
-  if (!authHeader) {
-    return res.status(401).json({ error: "Token não fornecido." });
-  }
-
-  if (authHeader.split(" ")[1] !== _consts.MOCK_TOKEN) {
-    return res.status(401).json({ error: "Token inválido." });
-  }
-
-  return next();
-});
-
 app.use(_routes2.default);
 
 const server = app.listen(process.env.PORT || 3333, () => {
