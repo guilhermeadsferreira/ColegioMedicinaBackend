@@ -6,12 +6,9 @@ var _consts = require('./consts');
 
 const routes = _express.Router.call(void 0, );
 
-routes.get(
-  "/deeplink",
-  _nodedeeplink2.default.call(void 0, {
-    fallback: "https://cupsapp.com",
-  })
-);
+routes.get("/deeplink", (req, res) => {
+  res.redirect("colegiomedicina://resetpassword/1");
+});
 
 routes.post("/session", _UserController2.default.session);
 

@@ -6,12 +6,9 @@ import { MOCK_TOKEN } from "./consts";
 
 const routes = Router();
 
-routes.get(
-  "/deeplink",
-  deeplink({
-    fallback: "https://cupsapp.com",
-  })
-);
+routes.get("/deeplink", (req, res) => {
+  res.redirect("colegiomedicina://resetpassword/1");
+});
 
 routes.post("/session", UserController.session);
 
