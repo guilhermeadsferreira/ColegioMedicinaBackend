@@ -30,7 +30,7 @@ class EmailController {
         .json(handle_response("error", "E-mail não enviado."));
     }
 
-    return res.status(200).json(handle_response(_, "E-mail enviado."));
+    return res.status(200).json(handle_response(undefined, "E-mail enviado."));
   }
 }
 
