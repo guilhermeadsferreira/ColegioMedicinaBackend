@@ -3,7 +3,6 @@ import routes from "./routes";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import socket from "socket.io";
-import { MOCK_TOKEN } from "./consts";
 
 const app = express();
 

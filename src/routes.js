@@ -1,8 +1,18 @@
 import { Router } from "express";
+import deeplink from "node-deeplink";
 import EmailController from "./controllers/EmailController";
 import UserController from "./controllers/UserController";
+import { MOCK_TOKEN } from "./consts";
 
 const routes = Router();
+
+routes.get(
+  "/deeplink",
+  deeplink({
+    url: "colegiomedicina://resetpassword/1",
+    fallback: "https://cupsapp.com",
+  })
+);
 
 routes.post("/session", UserController.session);
 
