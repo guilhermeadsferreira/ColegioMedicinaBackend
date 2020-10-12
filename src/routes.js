@@ -6,8 +6,8 @@ import { MOCK_TOKEN } from "./consts";
 
 const routes = Router();
 
-routes.get("/deeplink", (req, res) => {
-  res.redirect("colegiomedicina://resetpassword/1");
+routes.get("/deeplink/:id", (req, res) => {
+  res.redirect(`colegiomedicina://resetpassword/${req.params.id}`);
 });
 
 routes.post("/session", UserController.session);

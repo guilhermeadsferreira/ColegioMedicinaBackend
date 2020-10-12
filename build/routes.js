@@ -6,8 +6,8 @@ var _consts = require('./consts');
 
 const routes = _express.Router.call(void 0, );
 
-routes.get("/deeplink", (req, res) => {
-  res.redirect("colegiomedicina://resetpassword/1");
+routes.get("/deeplink/:id", (req, res) => {
+  res.redirect(`colegiomedicina://resetpassword/${req.params.id}`);
 });
 
 routes.post("/session", _UserController2.default.session);
