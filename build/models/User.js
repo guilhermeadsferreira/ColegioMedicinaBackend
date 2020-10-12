@@ -23,6 +23,9 @@ const UserSchema = new (0, _mongoose.Schema)(
       type: String,
       required: true,
     },
+    password_tip: {
+      type: String,
+    },
   },
   {
     timestamps: true,

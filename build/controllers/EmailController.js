@@ -12,7 +12,7 @@ class EmailController {
     if (!user) {
       return res
         .status(500)
-        .json(_handle_error.handle_message_error.call(void 0, "E-mail não encontrado."));
+        .json(_handle_error.handle_response.call(void 0, "error", "E-mail não encontrado."));
     }
 
     const mailOptions = {
@@ -25,12 +25,12 @@ class EmailController {
     const result = await _NodeMailer2.default.send_email(mailOptions);
 
     if (!result) {
-      return res.status(500).json(_handle_error.handle_message_error.call(void 0, "E-mail não enviado."));
+      return res
+        .status(500)
+        .json(_handle_error.handle_response.call(void 0, "error", "E-mail não enviado."));
     }
 
-    return res
-      .status(200)
-      .json({ status: "success", message: "E-mail enviado." });
+    return res.status(200).json(_handle_error.handle_response.call(void 0, _, "E-mail enviado."));
   }
 }
 

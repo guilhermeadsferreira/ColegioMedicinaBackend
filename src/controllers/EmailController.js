@@ -1,5 +1,5 @@
 import User from "../models/User";
-import { handle_message_error } from "../utils/handle_error";
+import { handle_response } from "../utils/handle_error";
 import NodeMailer from "../services/NodeMailer";
 import { HTML_RECOVERY_PASSWORD } from "../consts";
 
@@ -12,7 +12,7 @@ class EmailController {
     if (!user) {
       return res
         .status(500)
-        .json(handle_message_error("E-mail não encontrado."));
+        .json(handle_response("error", "E-mail não encontrado."));
     }
 
     const mailOptions = {
@@ -25,12 +25,12 @@ class EmailController {
     const result = await NodeMailer.send_email(mailOptions);
 
     if (!result) {
-      return res.status(500).json(handle_message_error("E-mail não enviado."));
+      return res
+        .status(500)
+        .json(handle_response("error", "E-mail não enviado."));
     }
 
-    return res
-      .status(200)
-      .json({ status: "success", message: "E-mail enviado." });
+    return res.status(200).json(handle_response(_, "E-mail enviado."));
   }
 }
 

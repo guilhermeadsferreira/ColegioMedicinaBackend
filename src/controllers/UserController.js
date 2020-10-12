@@ -1,5 +1,5 @@
 import User from "../models/User";
-import { handle_message_error } from "../utils/handle_error";
+import { handle_response } from "../utils/handle_error";
 import { MOCK_TOKEN } from "../consts";
 
 class UserController {
@@ -14,18 +14,18 @@ class UserController {
       if (!user) {
         return res
           .status(500)
-          .json(handle_message_error("Usuário não encontrado."));
+          .json(handle_response("error", "Usuário não encontrado."));
       }
 
       if (password !== user.password) {
         return res
           .status(500)
-          .json(handle_message_error("Dados não conferem."));
+          .json(handle_response("error", "Dados não conferem."));
       }
 
       return res.status(200).json({ user, token: MOCK_TOKEN });
     } catch (err) {
-      return res.status(500).json(handle_message_error());
+      return res.status(500).json(handle_response("error"));
     }
   }
 
@@ -36,13 +36,36 @@ class UserController {
       if (exists_user) {
         return res
           .status(500)
-          .json(handle_message_error("Este e-mail já possui um cadastrado."));
+          .json(
+            handle_response("error", "Este e-mail já possui um cadastrado.")
+          );
       }
 
       const user = await User.create(req.body);
       return res.status(200).json({ user, token: MOCK_TOKEN });
     } catch (err) {
-      return res.status(500).json(handle_message_error());
+      return res.status(500).json(handle_response("error"));
+    }
+  }
+
+  async resetpassword(req, res) {
+    const { id, password, password_tip } = req.body;
+
+    try {
+      await User.updateOne(
+        { _id: id },
+        {
+          password,
+          password_tip,
+        }
+      );
+
+      return res
+        .status(200)
+        .json(handle_response(undefined, "Senha resetada com sucesso."));
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json(handle_response("error"));
     }
   }
 }

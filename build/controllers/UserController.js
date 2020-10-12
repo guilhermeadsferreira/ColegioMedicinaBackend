@@ -14,18 +14,18 @@ class UserController {
       if (!user) {
         return res
           .status(500)
-          .json(_handle_error.handle_message_error.call(void 0, "Usuário não encontrado."));
+          .json(_handle_error.handle_response.call(void 0, "error", "Usuário não encontrado."));
       }
 
       if (password !== user.password) {
         return res
           .status(500)
-          .json(_handle_error.handle_message_error.call(void 0, "Dados não conferem."));
+          .json(_handle_error.handle_response.call(void 0, "error", "Dados não conferem."));
       }
 
       return res.status(200).json({ user, token: _consts.MOCK_TOKEN });
     } catch (err) {
-      return res.status(500).json(_handle_error.handle_message_error.call(void 0, ));
+      return res.status(500).json(_handle_error.handle_response.call(void 0, "error"));
     }
   }
 
@@ -36,13 +36,36 @@ class UserController {
       if (exists_user) {
         return res
           .status(500)
-          .json(_handle_error.handle_message_error.call(void 0, "Este e-mail já possui um cadastrado."));
+          .json(
+            _handle_error.handle_response.call(void 0, "error", "Este e-mail já possui um cadastrado.")
+          );
       }
 
       const user = await _User2.default.create(req.body);
       return res.status(200).json({ user, token: _consts.MOCK_TOKEN });
     } catch (err) {
-      return res.status(500).json(_handle_error.handle_message_error.call(void 0, ));
+      return res.status(500).json(_handle_error.handle_response.call(void 0, "error"));
+    }
+  }
+
+  async resetpassword(req, res) {
+    const { id, password, password_tip } = req.body;
+
+    try {
+      await _User2.default.updateOne(
+        { _id: id },
+        {
+          password,
+          password_tip,
+        }
+      );
+
+      return res
+        .status(200)
+        .json(_handle_error.handle_response.call(void 0, undefined, "Senha resetada com sucesso."));
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json(_handle_error.handle_response.call(void 0, "error"));
     }
   }
 }

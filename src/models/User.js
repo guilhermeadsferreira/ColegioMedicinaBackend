@@ -23,6 +23,9 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
+    password_tip: {
+      type: String,
+    },
   },
   {
     timestamps: true,

@@ -19,6 +19,8 @@ routes.get(
   _EmailController2.default.send_email_recovery_password
 );
 
+routes.post("/resetpassword", _UserController2.default.resetpassword);
+
 routes.use((req, res, next) => {
   const authHeader = req.headers.authorization;
 
