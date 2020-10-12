@@ -30,7 +30,7 @@ class EmailController {
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
     
     <body style="background-color: #f5f5f5; text-align: center; padding-bottom: 20px">
-          <a href="https://colegiomedicinaback.herokuapp.com/deeplink" style="
+          <a href="https://colegiomedicinaback.herokuapp.com/deeplink?url=colegiomedicina%3A%2F%2Fresetpassword%2F1" style="
                 background-color: #030d4f;
                 border: none;
                 color: white;

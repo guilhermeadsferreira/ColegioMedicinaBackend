@@ -9,7 +9,6 @@ const routes = Router();
 routes.get(
   "/deeplink",
   deeplink({
-    url: "colegiomedicina://resetpassword/1",
     fallback: "https://cupsapp.com",
   })
 );
