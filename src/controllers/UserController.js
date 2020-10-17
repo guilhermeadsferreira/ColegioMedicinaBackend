@@ -74,11 +74,9 @@ class UserController {
     delete req.body.id;
 
     try {
-      await User.updateOne({ _id: id }, req.body);
+      const user = await User.findByIdAndUpdate(req.body.id, req.body);
 
-      return res
-        .status(200)
-        .json(handle_response(undefined, "Dados atualizados com sucesso."));
+      return res.status(200).json({ status: "success", data: user });
     } catch (err) {
       console.log(err);
       return res.status(500).json(handle_response("error"));
@@ -87,16 +85,11 @@ class UserController {
 
   async upload_avatar(req, res) {
     try {
-      await User.updateOne(
-        { _id: req.body.id },
-        {
-          avatar: `https://colegiomedicinaback.herokuapp.com/storage/${req.file.filename}`,
-        }
-      );
+      const user = await User.findByIdAndUpdate(req.body.id, {
+        avatar: `https://colegiomedicinaback.herokuapp.com/storage/${req.file.filename}`,
+      });
 
-      return res
-        .status(200)
-        .json(handle_response(undefined, "Upload realizado com sucesso."));
+      return res.status(200).json({ status: "success", data: user });
     } catch (err) {
       console.log(err);
       return res.status(500).json(handle_response("error"));
