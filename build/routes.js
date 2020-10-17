@@ -1,9 +1,21 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _express = require('express');
-var _nodedeeplink = require('node-deeplink'); var _nodedeeplink2 = _interopRequireDefault(_nodedeeplink);
 var _EmailController = require('./controllers/EmailController'); var _EmailController2 = _interopRequireDefault(_EmailController);
 var _UserController = require('./controllers/UserController'); var _UserController2 = _interopRequireDefault(_UserController);
 var _consts = require('./consts');
+var _multer = require('multer'); var _multer2 = _interopRequireDefault(_multer);
+var _path = require('path');
+var storage = _multer2.default.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, _path.resolve.call(void 0, __dirname, "..", "storage"));
+  },
+  filename: function (req, file, cb) {
+    const ext = file.originalname.split(".").pop();
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(null, uniqueSuffix + "." + ext);
+  },
+});
 
+var upload = _multer2.default.call(void 0, { storage: storage });
 const routes = _express.Router.call(void 0, );
 
 routes.get("/deeplink/:id", (req, res) => {
@@ -34,5 +46,17 @@ routes.use((req, res, next) => {
 
   return next();
 });
+
+routes.put("/updateuserdata", _UserController2.default.update);
+
+routes.post(
+  "/uploadavatar",
+  upload.single("uploaded_file"),
+  _UserController2.default.upload_avatar
+);
+
+routes.get("/listclassschedule/:id", _UserController2.default.class_schedule);
+
+routes.get("/listrecordedlessons/:id", _UserController2.default.recorded_lessons);
 
 exports. default = routes;

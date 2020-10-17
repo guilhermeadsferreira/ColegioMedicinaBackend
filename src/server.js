@@ -3,6 +3,7 @@ import routes from "./routes";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import socket from "socket.io";
+import { resolve } from "path";
 
 const app = express();
 
@@ -15,6 +16,8 @@ mongoose.connect(
     useCreateIndex: true,
   }
 );
+
+app.use("/storage", express.static(resolve(__dirname, "..", "storage")));
 
 app.use(bodyParser.json());
 

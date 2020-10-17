@@ -26,6 +26,9 @@ const UserSchema = new Schema(
     password_tip: {
       type: String,
     },
+    avatar: {
+      type: String,
+    },
   },
   {
     timestamps: true,

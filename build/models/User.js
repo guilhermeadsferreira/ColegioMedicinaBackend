@@ -26,6 +26,9 @@ const UserSchema = new (0, _mongoose.Schema)(
     password_tip: {
       type: String,
     },
+    avatar: {
+      type: String,
+    },
   },
   {
     timestamps: true,

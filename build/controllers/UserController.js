@@ -68,6 +68,89 @@ class UserController {
       return res.status(500).json(_handle_error.handle_response.call(void 0, "error"));
     }
   }
+
+  async update(req, res) {
+    const id = req.body.id;
+    delete req.body.id;
+
+    try {
+      await _User2.default.updateOne({ _id: id }, req.body);
+
+      return res
+        .status(200)
+        .json(_handle_error.handle_response.call(void 0, undefined, "Dados atualizados com sucesso."));
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json(_handle_error.handle_response.call(void 0, "error"));
+    }
+  }
+
+  async upload_avatar(req, res) {
+    try {
+      await _User2.default.updateOne(
+        { _id: req.body.id },
+        {
+          avatar: `https://colegiomedicinaback.herokuapp.com/storage/${req.file.filename}`,
+        }
+      );
+
+      return res
+        .status(200)
+        .json(_handle_error.handle_response.call(void 0, undefined, "Upload realizado com sucesso."));
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json(_handle_error.handle_response.call(void 0, "error"));
+    }
+  }
+
+  async class_schedule(req, res) {
+    return res.status(200).json([
+      {
+        subject: "Quimica",
+        live: true,
+        date: "10/jun",
+        time: "10h30 am",
+      },
+      {
+        subject: "Biologia",
+        live: false,
+        date: "10/jun",
+        time: "10h30 am",
+      },
+      {
+        subject: "Anatomia",
+        live: false,
+        date: "10/jun",
+        time: "10h30 am",
+      },
+      {
+        subject: "História",
+        live: false,
+        date: "10/jun",
+        time: "10h30 am",
+      },
+    ]);
+  }
+
+  async recorded_lessons(req, res) {
+    return res.status(200).json([
+      {
+        title: "Equação de 2º grau",
+        image: "https://colegiomedicinaback.herokuapp.com/storage/Aula.png",
+        subject: "Matemática",
+      },
+      {
+        title: "Equação de 2º grau",
+        image: "https://colegiomedicinaback.herokuapp.com/storage/Aula.png",
+        subject: "Matemática",
+      },
+      {
+        title: "Equação de 2º grau",
+        image: "https://colegiomedicinaback.herokuapp.com/storage/Aula.png",
+        subject: "Matemática",
+      },
+    ]);
+  }
 }
 
 exports. default = new UserController();
