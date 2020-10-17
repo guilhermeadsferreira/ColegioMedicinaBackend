@@ -85,11 +85,16 @@ class UserController {
 
   async upload_avatar(req, res) {
     try {
-      const user = await _User2.default.findByIdAndUpdate(req.body.id, {
-        avatar: `https://colegiomedicinaback.herokuapp.com/storage/${req.file.filename}`,
-      });
-
-      return res.status(200).json({ status: "success", data: user });
+      await _User2.default.updateOne(
+        { _id: req.body.id },
+        {
+          avatar: `https://colegiomedicinaback.herokuapp.com/storage/${req.file.filename}`,
+        }
+      );
+      const user = await _User2.default.findById(req.body.id);
+      return res
+        .status(200)
+        .json({ status: "success", data: { token: _consts.MOCK_TOKEN, user } });
     } catch (err) {
       console.log(err);
       return res.status(500).json(_handle_error.handle_response.call(void 0, "error"));
