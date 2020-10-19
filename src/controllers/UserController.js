@@ -70,12 +70,9 @@ class UserController {
   }
 
   async update(req, res) {
-    const id = req.body.id;
-    delete req.body.id;
-
     try {
-      const user = await User.findByIdAndUpdate(req.body.id, req.body);
-
+      await User.updateOne({ _id: req.body.id }, req.body);
+      const user = await User.findById(req.body.id);
       return res.status(200).json({ status: "success", data: user });
     } catch (err) {
       console.log(err);
