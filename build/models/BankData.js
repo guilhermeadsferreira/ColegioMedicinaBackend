@@ -22,6 +22,10 @@ const BankDataSchema = new (0, _mongoose.Schema)(
       type: String,
       required: true,
     },
+    verifying_digit: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,
