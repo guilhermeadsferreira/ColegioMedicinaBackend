@@ -4,6 +4,8 @@ var _UserController = require('./controllers/UserController'); var _UserControll
 var _consts = require('./consts');
 var _multer = require('multer'); var _multer2 = _interopRequireDefault(_multer);
 var _path = require('path');
+var _BankDataController = require('./controllers/BankDataController'); var _BankDataController2 = _interopRequireDefault(_BankDataController);
+
 var storage = _multer2.default.diskStorage({
   destination: function (req, file, cb) {
     cb(null, _path.resolve.call(void 0, __dirname, "..", "storage"));
@@ -58,5 +60,13 @@ routes.post(
 routes.get("/listclassschedule/:id", _UserController2.default.class_schedule);
 
 routes.get("/listrecordedlessons/:id", _UserController2.default.recorded_lessons);
+
+routes.post("/createbankdata", _BankDataController2.default.store);
+
+routes.delete("/deletebankdata/:id", _BankDataController2.default.delete);
+
+routes.get("/listbankdata/:id", _BankDataController2.default.findAll);
+
+routes.put("/updatebankdata", _BankDataController2.default.update);
 
 exports. default = routes;

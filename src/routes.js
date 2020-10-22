@@ -4,6 +4,8 @@ import UserController from "./controllers/UserController";
 import { MOCK_TOKEN } from "./consts";
 import multer from "multer";
 import { resolve } from "path";
+import BankDataController from "./controllers/BankDataController";
+
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, resolve(__dirname, "..", "storage"));
@@ -58,5 +60,13 @@ routes.post(
 routes.get("/listclassschedule/:id", UserController.class_schedule);
 
 routes.get("/listrecordedlessons/:id", UserController.recorded_lessons);
+
+routes.post("/createbankdata", BankDataController.store);
+
+routes.delete("/deletebankdata/:id", BankDataController.delete);
+
+routes.get("/listbankdata/:id", BankDataController.findAll);
+
+routes.put("/updatebankdata", BankDataController.update);
 
 export default routes;

@@ -3,10 +3,17 @@ const MESSAGE_ERROR_DEFAULT =
 
 export const handle_response = (
   status = "success",
-  message = MESSAGE_ERROR_DEFAULT
+  message = MESSAGE_ERROR_DEFAULT,
+  data = false
 ) => {
-  return {
+  const obj = {
     status,
     message,
   };
+
+  if (data) {
+    obj.data = data;
+  }
+
+  return obj;
 };
