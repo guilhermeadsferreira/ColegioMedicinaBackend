@@ -57,10 +57,11 @@ class UserController {
       await CreditCard.create({
         user_id: user._id,
         card_holder: `${user.name} ${user.lastname}`,
-        card_number: `0000 0000 0000 0000`,
+        card_number: `4556 0918 5727 6876`,
         expires_at: "02/28",
-        cvv: "512",
+        cvv: "985",
         billing_address: `Rua de Goiânia, nº 00 Setor Pedro Ludovico Goiânia - Goiás 74000-000`,
+        flag: "Visa",
       });
 
       return res.status(200).json({ user, token: MOCK_TOKEN });

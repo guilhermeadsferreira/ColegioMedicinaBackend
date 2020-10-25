@@ -26,6 +26,10 @@ const CreditCardSchema = new (0, _mongoose.Schema)(
       type: String,
       required: true,
     },
+    flag: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,

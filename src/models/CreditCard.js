@@ -26,6 +26,10 @@ const CreditCardSchema = new Schema(
       type: String,
       required: true,
     },
+    flag: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,
