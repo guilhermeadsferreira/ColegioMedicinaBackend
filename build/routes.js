@@ -3,6 +3,7 @@ var _EmailController = require('./controllers/EmailController'); var _EmailContr
 var _UserController = require('./controllers/UserController'); var _UserController2 = _interopRequireDefault(_UserController);
 var _BankDataController = require('./controllers/BankDataController'); var _BankDataController2 = _interopRequireDefault(_BankDataController);
 var _CreditCardController = require('./controllers/CreditCardController'); var _CreditCardController2 = _interopRequireDefault(_CreditCardController);
+var _AddressController = require('./controllers/AddressController'); var _AddressController2 = _interopRequireDefault(_AddressController);
 var _consts = require('./consts');
 var _multer = require('multer'); var _multer2 = _interopRequireDefault(_multer);
 var _path = require('path');
@@ -77,5 +78,13 @@ routes.delete("/deletecreditcard/:id", _CreditCardController2.default.delete);
 routes.get("/listcreditcard/:id", _CreditCardController2.default.findAll);
 
 routes.put("/updatecreditcard", _CreditCardController2.default.update);
+
+routes.post("/createaddress", _AddressController2.default.store);
+
+routes.delete("/deleteaddress/:id", _AddressController2.default.delete);
+
+routes.get("/listaddresses/:id", _AddressController2.default.findAll);
+
+routes.put("/updateaddress", _AddressController2.default.update);
 
 exports. default = routes;

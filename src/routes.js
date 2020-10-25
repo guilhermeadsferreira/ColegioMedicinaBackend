@@ -3,6 +3,7 @@ import EmailController from "./controllers/EmailController";
 import UserController from "./controllers/UserController";
 import BankDataController from "./controllers/BankDataController";
 import CreditCardController from "./controllers/CreditCardController";
+import AddressController from "./controllers/AddressController";
 import { MOCK_TOKEN } from "./consts";
 import multer from "multer";
 import { resolve } from "path";
@@ -77,5 +78,13 @@ routes.delete("/deletecreditcard/:id", CreditCardController.delete);
 routes.get("/listcreditcard/:id", CreditCardController.findAll);
 
 routes.put("/updatecreditcard", CreditCardController.update);
+
+routes.post("/createaddress", AddressController.store);
+
+routes.delete("/deleteaddress/:id", AddressController.delete);
+
+routes.get("/listaddresses/:id", AddressController.findAll);
+
+routes.put("/updateaddress", AddressController.update);
 
 export default routes;
