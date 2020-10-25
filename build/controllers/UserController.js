@@ -1,4 +1,6 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _User = require('../models/User'); var _User2 = _interopRequireDefault(_User);
+var _BankData = require('../models/BankData'); var _BankData2 = _interopRequireDefault(_BankData);
+var _CreditCard = require('../models/CreditCard'); var _CreditCard2 = _interopRequireDefault(_CreditCard);
 var _handle_error = require('../utils/handle_error');
 var _consts = require('../consts');
 
@@ -42,6 +44,25 @@ class UserController {
       }
 
       const user = await _User2.default.create(req.body);
+
+      await _BankData2.default.create({
+        account_number: "123456",
+        verifying_digit: "1",
+        type: "Conta Corrente",
+        agency_number: "0001",
+        bank_number: "341 - Itaú Unibanco S/A.",
+        user_id: user._id,
+      });
+
+      await _CreditCard2.default.create({
+        user_id: user._id,
+        card_holder: `${user.name} ${user.lastname}`,
+        card_number: `0000 0000 0000 0000`,
+        expires_at: "02/28",
+        cvv: "512",
+        billing_address: `Rua de Goiânia, nº 00 Setor Pedro Ludovico Goiânia - Goiás 74000-000`,
+      });
+
       return res.status(200).json({ user, token: _consts.MOCK_TOKEN });
     } catch (err) {
       return res.status(500).json(_handle_error.handle_response.call(void 0, "error"));

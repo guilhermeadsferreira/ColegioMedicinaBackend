@@ -1,10 +1,11 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _express = require('express');
 var _EmailController = require('./controllers/EmailController'); var _EmailController2 = _interopRequireDefault(_EmailController);
 var _UserController = require('./controllers/UserController'); var _UserController2 = _interopRequireDefault(_UserController);
+var _BankDataController = require('./controllers/BankDataController'); var _BankDataController2 = _interopRequireDefault(_BankDataController);
+var _CreditCardController = require('./controllers/CreditCardController'); var _CreditCardController2 = _interopRequireDefault(_CreditCardController);
 var _consts = require('./consts');
 var _multer = require('multer'); var _multer2 = _interopRequireDefault(_multer);
 var _path = require('path');
-var _BankDataController = require('./controllers/BankDataController'); var _BankDataController2 = _interopRequireDefault(_BankDataController);
 
 var storage = _multer2.default.diskStorage({
   destination: function (req, file, cb) {
@@ -68,5 +69,13 @@ routes.delete("/deletebankdata/:id", _BankDataController2.default.delete);
 routes.get("/listbankdata/:id", _BankDataController2.default.findAll);
 
 routes.put("/updatebankdata", _BankDataController2.default.update);
+
+routes.post("/createcreditcard", _CreditCardController2.default.store);
+
+routes.delete("/deletecreditcard/:id", _CreditCardController2.default.delete);
+
+routes.get("/listcreditcard/:id", _CreditCardController2.default.findAll);
+
+routes.put("/updatecreditcard", _CreditCardController2.default.update);
 
 exports. default = routes;

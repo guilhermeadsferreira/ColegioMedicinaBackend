@@ -1,10 +1,11 @@
 import { Router } from "express";
 import EmailController from "./controllers/EmailController";
 import UserController from "./controllers/UserController";
+import BankDataController from "./controllers/BankDataController";
+import CreditCardController from "./controllers/CreditCardController";
 import { MOCK_TOKEN } from "./consts";
 import multer from "multer";
 import { resolve } from "path";
-import BankDataController from "./controllers/BankDataController";
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -68,5 +69,13 @@ routes.delete("/deletebankdata/:id", BankDataController.delete);
 routes.get("/listbankdata/:id", BankDataController.findAll);
 
 routes.put("/updatebankdata", BankDataController.update);
+
+routes.post("/createcreditcard", CreditCardController.store);
+
+routes.delete("/deletecreditcard/:id", CreditCardController.delete);
+
+routes.get("/listcreditcard/:id", CreditCardController.findAll);
+
+routes.put("/updatecreditcard", CreditCardController.update);
 
 export default routes;

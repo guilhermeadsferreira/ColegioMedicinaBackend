@@ -1,4 +1,6 @@
 import User from "../models/User";
+import BankData from "../models/BankData";
+import CreditCard from "../models/CreditCard";
 import { handle_response } from "../utils/handle_error";
 import { MOCK_TOKEN } from "../consts";
 
@@ -42,6 +44,25 @@ class UserController {
       }
 
       const user = await User.create(req.body);
+
+      await BankData.create({
+        account_number: "123456",
+        verifying_digit: "1",
+        type: "Conta Corrente",
+        agency_number: "0001",
+        bank_number: "341 - Itaú Unibanco S/A.",
+        user_id: user._id,
+      });
+
+      await CreditCard.create({
+        user_id: user._id,
+        card_holder: `${user.name} ${user.lastname}`,
+        card_number: `0000 0000 0000 0000`,
+        expires_at: "02/28",
+        cvv: "512",
+        billing_address: `Rua de Goiânia, nº 00 Setor Pedro Ludovico Goiânia - Goiás 74000-000`,
+      });
+
       return res.status(200).json({ user, token: MOCK_TOKEN });
     } catch (err) {
       return res.status(500).json(handle_response("error"));
