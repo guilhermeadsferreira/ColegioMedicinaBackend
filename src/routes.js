@@ -4,6 +4,7 @@ import UserController from "./controllers/UserController";
 import BankDataController from "./controllers/BankDataController";
 import CreditCardController from "./controllers/CreditCardController";
 import AddressController from "./controllers/AddressController";
+import PayerController from "./controllers/PayerController";
 import { MOCK_TOKEN } from "./consts";
 import multer from "multer";
 import { resolve } from "path";
@@ -63,6 +64,8 @@ routes.get("/listclassschedule/:id", UserController.class_schedule);
 
 routes.get("/listrecordedlessons/:id", UserController.recorded_lessons);
 
+// BankData
+
 routes.post("/createbankdata", BankDataController.store);
 
 routes.delete("/deletebankdata/:id", BankDataController.delete);
@@ -70,6 +73,8 @@ routes.delete("/deletebankdata/:id", BankDataController.delete);
 routes.get("/listbankdata/:id", BankDataController.findAll);
 
 routes.put("/updatebankdata", BankDataController.update);
+
+// CreditCard
 
 routes.post("/createcreditcard", CreditCardController.store);
 
@@ -79,6 +84,8 @@ routes.get("/listcreditcard/:id", CreditCardController.findAll);
 
 routes.put("/updatecreditcard", CreditCardController.update);
 
+// Address
+
 routes.post("/createaddress", AddressController.store);
 
 routes.delete("/deleteaddress/:id", AddressController.delete);
@@ -86,5 +93,15 @@ routes.delete("/deleteaddress/:id", AddressController.delete);
 routes.get("/listaddresses/:id", AddressController.findAll);
 
 routes.put("/updateaddress", AddressController.update);
+
+// Payer
+
+routes.post("/createpayer", PayerController.store);
+
+routes.delete("/deletepayer/:id", PayerController.delete);
+
+routes.get("/listpayers/:id", PayerController.findAll);
+
+routes.put("/updatepayer", PayerController.update);
 
 export default routes;

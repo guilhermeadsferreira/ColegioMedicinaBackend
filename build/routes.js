@@ -4,6 +4,7 @@ var _UserController = require('./controllers/UserController'); var _UserControll
 var _BankDataController = require('./controllers/BankDataController'); var _BankDataController2 = _interopRequireDefault(_BankDataController);
 var _CreditCardController = require('./controllers/CreditCardController'); var _CreditCardController2 = _interopRequireDefault(_CreditCardController);
 var _AddressController = require('./controllers/AddressController'); var _AddressController2 = _interopRequireDefault(_AddressController);
+var _PayerController = require('./controllers/PayerController'); var _PayerController2 = _interopRequireDefault(_PayerController);
 var _consts = require('./consts');
 var _multer = require('multer'); var _multer2 = _interopRequireDefault(_multer);
 var _path = require('path');
@@ -63,6 +64,8 @@ routes.get("/listclassschedule/:id", _UserController2.default.class_schedule);
 
 routes.get("/listrecordedlessons/:id", _UserController2.default.recorded_lessons);
 
+// BankData
+
 routes.post("/createbankdata", _BankDataController2.default.store);
 
 routes.delete("/deletebankdata/:id", _BankDataController2.default.delete);
@@ -70,6 +73,8 @@ routes.delete("/deletebankdata/:id", _BankDataController2.default.delete);
 routes.get("/listbankdata/:id", _BankDataController2.default.findAll);
 
 routes.put("/updatebankdata", _BankDataController2.default.update);
+
+// CreditCard
 
 routes.post("/createcreditcard", _CreditCardController2.default.store);
 
@@ -79,6 +84,8 @@ routes.get("/listcreditcard/:id", _CreditCardController2.default.findAll);
 
 routes.put("/updatecreditcard", _CreditCardController2.default.update);
 
+// Address
+
 routes.post("/createaddress", _AddressController2.default.store);
 
 routes.delete("/deleteaddress/:id", _AddressController2.default.delete);
@@ -86,5 +93,15 @@ routes.delete("/deleteaddress/:id", _AddressController2.default.delete);
 routes.get("/listaddresses/:id", _AddressController2.default.findAll);
 
 routes.put("/updateaddress", _AddressController2.default.update);
+
+// Payer
+
+routes.post("/createpayer", _PayerController2.default.store);
+
+routes.delete("/deletepayer/:id", _PayerController2.default.delete);
+
+routes.get("/listpayers/:id", _PayerController2.default.findAll);
+
+routes.put("/updatepayer", _PayerController2.default.update);
 
 exports. default = routes;
