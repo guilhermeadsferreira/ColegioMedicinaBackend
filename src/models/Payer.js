@@ -12,11 +12,19 @@ const PayerSchema = new Schema(
     },
     name: {
       type: String,
-      required: true,
+      required: false,
     },
     last_name: {
       type: String,
-      required: true,
+      required: false,
+    },
+    company_name: {
+      type: String,
+      required: false,
+    },
+    responsible: {
+      type: String,
+      required: false,
     },
     cpf_cnpj: {
       type: String,
