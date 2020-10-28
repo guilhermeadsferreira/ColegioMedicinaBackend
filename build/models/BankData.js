@@ -10,7 +10,7 @@ const BankDataSchema = new (0, _mongoose.Schema)(
       type: String,
       required: true,
     },
-    type: {
+    account_type: {
       type: String,
       required: true,
     },

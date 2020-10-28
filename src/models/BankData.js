@@ -10,7 +10,7 @@ const BankDataSchema = new Schema(
       type: String,
       required: true,
     },
-    type: {
+    account_type: {
       type: String,
       required: true,
     },
