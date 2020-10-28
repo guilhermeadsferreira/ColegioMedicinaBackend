@@ -48,7 +48,7 @@ class UserController {
       await _BankData2.default.create({
         account_number: "123456",
         verifying_digit: "1",
-        type: "Conta Corrente",
+        account_type: "Conta Corrente",
         agency_number: "0001",
         bank_number: "341 - Itaú Unibanco S/A.",
         user_id: user._id,
