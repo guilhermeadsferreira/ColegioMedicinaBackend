@@ -16,8 +16,7 @@ const AddressSchema = new Schema(
     },
     complement: {
       type: String,
-      required: true,
-      unique: true,
+      required: false,
     },
     neighborhood: {
       type: String,

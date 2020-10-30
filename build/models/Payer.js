@@ -56,7 +56,7 @@ const PayerSchema = new (0, _mongoose.Schema)(
     },
     complement: {
       type: String,
-      required: true,
+      required: false,
     },
     neighborhood: {
       type: String,

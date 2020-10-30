@@ -56,7 +56,7 @@ const PayerSchema = new Schema(
     },
     complement: {
       type: String,
-      required: true,
+      required: false,
     },
     neighborhood: {
       type: String,

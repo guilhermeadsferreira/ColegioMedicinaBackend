@@ -16,8 +16,7 @@ const AddressSchema = new (0, _mongoose.Schema)(
     },
     complement: {
       type: String,
-      required: true,
-      unique: true,
+      required: false,
     },
     neighborhood: {
       type: String,
