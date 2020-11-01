@@ -41,9 +41,10 @@ io.on("connection", function (socket) {
   });
 
   socket.on("disconnect", () => {
-    // activeUsers.delete(socket.userId);
-    console.log("disc", socket.userId);
-    io.emit("user disconnected", `${socket.userId.name} saiu do chat.`);
+    if (socket.userId) {
+      console.log("disc", socket.userId);
+      io.emit("user disconnected", `${socket.userId.name} saiu do chat.`);
+    }
   });
 
   socket.on("chat message", function (data) {
