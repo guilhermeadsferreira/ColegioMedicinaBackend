@@ -36,12 +36,13 @@ io.on("connection", function (socket) {
   socket.on("new user", function (data) {
     socket.userId = data;
     // activeUsers.add(data);
-    io.emit("new user", `${data} entrou no chat.`);
+    console.log(data);
+    io.emit("new user", `${data.name} entrou no chat.`);
   });
 
   socket.on("disconnect", () => {
     // activeUsers.delete(socket.userId);
-    io.emit("user disconnected", `${socket.userId} saiu do chat.`);
+    io.emit("user disconnected", `${socket.userId.name} saiu do chat.`);
   });
 
   socket.on("chat message", function (data) {
