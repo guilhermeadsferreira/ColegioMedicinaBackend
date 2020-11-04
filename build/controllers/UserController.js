@@ -154,27 +154,27 @@ class UserController {
   }
 
   async recorded_lessons(req, res) {
-    if (req.params.class.length !== 2) {
+    if (req.query.class) {
       return res.status(200).json([
         {
           title: "Aula de Segunda-feira",
           image: "https://colegiomedicinaback.herokuapp.com/storage/Aula.png",
-          subject: req.params.class,
+          subject: req.query.class,
         },
         {
           title: "Aula de Terça-feira",
           image: "https://colegiomedicinaback.herokuapp.com/storage/Aula.png",
-          subject: req.params.class,
+          subject: req.query.class,
         },
         {
           title: "Aula de Quarta-feira",
           image: "https://colegiomedicinaback.herokuapp.com/storage/Aula.png",
-          subject: req.params.class,
+          subject: req.query.class,
         },
         {
           title: "Aula de Quinta-feira",
           image: "https://colegiomedicinaback.herokuapp.com/storage/Aula.png",
-          subject: req.params.class,
+          subject: req.query.class,
         },
       ]);
     } else {

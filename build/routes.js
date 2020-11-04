@@ -62,7 +62,7 @@ routes.post(
 
 routes.get("/listclassschedule/:id", _UserController2.default.class_schedule);
 
-routes.get("/listrecordedlessons/:class", _UserController2.default.recorded_lessons);
+routes.get("/listrecordedlessons", _UserController2.default.recorded_lessons);
 
 routes.get("/listattachments/:class", _UserController2.default.get_attachments);
 
