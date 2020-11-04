@@ -127,44 +127,107 @@ class UserController {
         live: true,
         date: "10/jun",
         time: "10h30 am",
+        teacher_name: "Joaquim",
       },
       {
         subject: "Biologia",
         live: false,
         date: "10/jun",
         time: "10h30 am",
+        teacher_name: "Rodolfo",
       },
       {
         subject: "Anatomia",
         live: false,
         date: "10/jun",
         time: "10h30 am",
+        teacher_name: "Ronaldo",
       },
       {
         subject: "História",
         live: false,
         date: "10/jun",
         time: "10h30 am",
+        teacher_name: "Paula",
       },
     ]);
   }
 
   async recorded_lessons(req, res) {
+    if (req.params.class) {
+      return res.status(200).json([
+        {
+          title: "Aula de Segunda-feira",
+          image: "https://colegiomedicinaback.herokuapp.com/storage/Aula.png",
+          subject: req.params.class,
+        },
+        {
+          title: "Aula de Terça-feira",
+          image: "https://colegiomedicinaback.herokuapp.com/storage/Aula.png",
+          subject: req.params.class,
+        },
+        {
+          title: "Aula de Quarta-feira",
+          image: "https://colegiomedicinaback.herokuapp.com/storage/Aula.png",
+          subject: req.params.class,
+        },
+        {
+          title: "Aula de Quinta-feira",
+          image: "https://colegiomedicinaback.herokuapp.com/storage/Aula.png",
+          subject: req.params.class,
+        },
+      ]);
+    } else {
+      return res.status(200).json([
+        {
+          title: "Aula de Segunda-feira",
+          image: "https://colegiomedicinaback.herokuapp.com/storage/Aula.png",
+          subject: "Química",
+        },
+        {
+          title: "Aula de Terça-feira",
+          image: "https://colegiomedicinaback.herokuapp.com/storage/Aula.png",
+          subject: "Biologia",
+        },
+        {
+          title: "Aula de Quinta-feira",
+          image: "https://colegiomedicinaback.herokuapp.com/storage/Aula.png",
+          subject: "Anatomia",
+        },
+        {
+          title: "Aula de Sexta-feira",
+          image: "https://colegiomedicinaback.herokuapp.com/storage/Aula.png",
+          subject: "História",
+        },
+      ]);
+    }
+  }
+
+  async get_attachments(req, res) {
     return res.status(200).json([
       {
-        title: "Equação de 2º grau",
-        image: "https://colegiomedicinaback.herokuapp.com/storage/Aula.png",
-        subject: "Matemática",
+        title: "Título do Anexo 1",
+        description: "Descritivo anexo 1",
+        attachments:
+          "https://colegiomedicinaback.herokuapp.com/storage/lista_matematica.pdf",
       },
       {
-        title: "Equação de 2º grau",
-        image: "https://colegiomedicinaback.herokuapp.com/storage/Aula.png",
-        subject: "Matemática",
+        title: "Título do Anexo 2",
+        description: "Descritivo anexo 2",
+        attachments:
+          "https://colegiomedicinaback.herokuapp.com/storage/lista_matematica.pdf",
       },
       {
-        title: "Equação de 2º grau",
-        image: "https://colegiomedicinaback.herokuapp.com/storage/Aula.png",
-        subject: "Matemática",
+        title: "Título do Anexo 3",
+        description: "Descritivo anexo 3",
+        attachments:
+          "https://colegiomedicinaback.herokuapp.com/storage/lista_matematica.pdf",
+      },
+      {
+        title: "Título do Anexo 4",
+        description: "Descritivo anexo 4",
+        attachments:
+          "https://colegiomedicinaback.herokuapp.com/storage/lista_matematica.pdf",
       },
     ]);
   }

@@ -62,7 +62,9 @@ routes.post(
 
 routes.get("/listclassschedule/:id", UserController.class_schedule);
 
-routes.get("/listrecordedlessons/:id", UserController.recorded_lessons);
+routes.get("/listrecordedlessons/:class", UserController.recorded_lessons);
+
+routes.get("/listattachments/:class", UserController.get_attachments);
 
 // BankData
 
