@@ -154,7 +154,7 @@ class UserController {
   }
 
   async recorded_lessons(req, res) {
-    if (req.params.class !== "") {
+    if (req.params.class.length !== 2) {
       return res.status(200).json([
         {
           title: "Aula de Segunda-feira",
