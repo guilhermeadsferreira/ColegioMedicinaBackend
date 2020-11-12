@@ -25,7 +25,7 @@ const routes = _express.Router.call(void 0, );
 
 routes.get("/deeplink/:id", (req, res) => {
   // res.redirect(`colegiomedicina://resetpassword/${req.params.id}`);
-  res.redirect(`exp://192.168.15.186:19000/resetpassword/${req.params.id}`);
+  res.redirect(`capitalsocial://resetpassword/${req.params.id}`);
 });
 
 routes.post("/session", _UserController2.default.session);
