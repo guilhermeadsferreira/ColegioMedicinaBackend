@@ -24,8 +24,7 @@ var upload = _multer2.default.call(void 0, { storage: storage });
 const routes = _express.Router.call(void 0, );
 
 routes.get("/deeplink/:id", (req, res) => {
-  // res.redirect(`colegiomedicina://resetpassword/${req.params.id}`);
-  res.redirect(`capitalsocial://resetpassword/${req.params.id}`);
+  res.redirect(`colegiomedicina://resetpassword/${req.params.id}`);
 });
 
 routes.post("/session", _UserController2.default.session);
