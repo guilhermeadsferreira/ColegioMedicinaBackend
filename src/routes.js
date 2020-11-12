@@ -24,7 +24,8 @@ var upload = multer({ storage: storage });
 const routes = Router();
 
 routes.get("/deeplink/:id", (req, res) => {
-  res.redirect(`colegiomedicina://resetpassword/${req.params.id}`);
+  // res.redirect(`colegiomedicina://resetpassword/${req.params.id}`);
+  res.redirect(`exp://127.0.0.1:19000/resetpassword/${req.params.id}`);
 });
 
 routes.post("/session", UserController.session);
